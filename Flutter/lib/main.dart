@@ -10,7 +10,7 @@ import 'package:permission_handler/permission_handler.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(
-      debug: true // optional: set false to disable printing logs to console
+      // debug: true // optional: set false to disable printing logs to console
       );
   runApp(MyApp());
 }
@@ -58,8 +58,7 @@ class _MyAppState extends State<MyApp> {
         await downloadsDirectory.create(recursive: true);
       }
       final taskid = await FlutterDownloader.enqueue(
-              url:
-                  'https://codeload.github.com/sudonims/c-file-manager/zip/master',
+              url: 'https://ytdl-backend-lol.herokuapp.com/9em32dDnTck',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("Start"));
@@ -87,8 +86,7 @@ class _MyAppState extends State<MyApp> {
       }
       print(downloadsDirectory.path);
       final taskid = await FlutterDownloader.enqueue(
-              url:
-                  'https://codeload.github.com/sudonims/c-file-manager/zip/master',
+              url: 'https://ytdl-backend-lol.herokuapp.com/9em32dDnTck',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("object"));
@@ -109,7 +107,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Not Youtube-dl'),
         ),
         body: Center(
           child: Column(
