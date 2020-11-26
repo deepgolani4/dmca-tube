@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:ui';
 import 'dart:io';
+import 'dart:core';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -57,8 +58,12 @@ class _MyAppState extends State<MyApp> {
         print("not exist");
         await downloadsDirectory.create(recursive: true);
       }
+
+      var param = _sharedText.split('/').last;
+      print(param);
+
       final taskid = await FlutterDownloader.enqueue(
-              url: 'https://ytdl-backend-lol.herokuapp.com/9em32dDnTck',
+              url: 'https://ytdl-backend-lol.herokuapp.com/$param',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("Start"));
@@ -85,8 +90,12 @@ class _MyAppState extends State<MyApp> {
         await downloadsDirectory.create(recursive: true);
       }
       print(downloadsDirectory.path);
+
+      var param = _sharedText.split('/').last;
+      print(param);
+
       final taskid = await FlutterDownloader.enqueue(
-              url: 'https://ytdl-backend-lol.herokuapp.com/9em32dDnTck',
+              url: 'https://ytdl-backend-lol.herokuapp.com/$param',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("object"));
