@@ -78,7 +78,12 @@ app.get("/:id/:name",(req,res,next)=>{
       ffmpegProcess.stdio[6].pipe(writeableStream);
       writeableStream.on('finish',()=>{
         console.log(`downloaded successfully`);
-        res.download(__dirname+`/${fName}.mkv`);
+        res.download(__dirname+`/${fName}.mkv`, (err) => {
+          if(err) {
+            console.log(err);
+          }
+          fs.unlinkSync(`./${fName}.mkv`);
+        });
       })
       
     })
