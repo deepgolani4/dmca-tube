@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:ui';
@@ -6,6 +8,8 @@ import 'dart:core';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:http/http.dart' as http;
+
 // import 'package:simple_permissions/simple_permissions.dart';
 
 void main() async {
@@ -38,6 +42,11 @@ class _MyAppState extends State<MyApp> {
     return false;
   }
 
+  Future<http.Response> getTitle(String id) {
+    return http.get(
+        'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=$id&key=AIzaSyDV0ZM0HAC0loJ94-LmMgXiM_ob2fxQ5qk');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -62,8 +71,14 @@ class _MyAppState extends State<MyApp> {
       var param = _sharedText.split('/').last;
       print(param);
 
+      var res = await getTitle(param);
+      var title = jsonDecode(res.body)['items'][0]['snippet']['title'];
+      title = title.replaceAll(" ", '_');
+
+      print(title);
+
       final taskid = await FlutterDownloader.enqueue(
-              url: 'https://ytdl-backend-lol.herokuapp.com/$param',
+              url: 'https://ytdl-backend-lol.herokuapp.com/$param/$title',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("Start"));
@@ -93,9 +108,14 @@ class _MyAppState extends State<MyApp> {
 
       var param = _sharedText.split('/').last;
       print(param);
+      var res = await getTitle(param);
+      var title = jsonDecode(res.body)['items'][0]['snippet']['title'];
+      title = title.replaceAll(" ", '_');
+
+      print(title);
 
       final taskid = await FlutterDownloader.enqueue(
-              url: 'https://ytdl-backend-lol.herokuapp.com/$param',
+              url: 'https://ytdl-backend-lol.herokuapp.com/$param/$title',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("object"));
