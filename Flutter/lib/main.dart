@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
       print(title);
 
       final taskid = await FlutterDownloader.enqueue(
-              url: 'https://ytdl-backend-lol.herokuapp.com/$param/$title',
+              url: 'https://oyuthoob.herokuapp.com/$param/$title',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("Start"));
@@ -115,7 +115,7 @@ class _MyAppState extends State<MyApp> {
       print(title);
 
       final taskid = await FlutterDownloader.enqueue(
-              url: 'https://ytdl-backend-lol.herokuapp.com/$param/$title',
+              url: 'https://oyuthoob.herokuapp.com/$param/$title',
               savedDir: downloadsDirectory.path,
               showNotification: true)
           .then((value) => print("object"));
