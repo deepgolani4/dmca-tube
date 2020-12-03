@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
 
       var res = await getTitle(param);
       var title = jsonDecode(res.body)['items'][0]['snippet']['title'];
-      title = title.replaceAll(" ", '_');
+      title = title.replaceAll("[^A-Za-z0-9]", '_');
 
       print(title);
 
@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
       print(param);
       var res = await getTitle(param);
       var title = jsonDecode(res.body)['items'][0]['snippet']['title'];
-      title = title.replaceAll(" ", '_');
+      title = title.replaceAll("[^A-Za-z0-9]", '_');
 
       print(title);
 
