@@ -73,7 +73,9 @@ class _MyAppState extends State<MyApp> {
 
       var res = await getTitle(param);
       var title = jsonDecode(res.body)['items'][0]['snippet']['title'];
-      title = title.replaceAll("[^A-Za-z0-9]", '_');
+      title = title
+          .replaceAll(new RegExp(r"[^A-Za-z0-9]"), '_')
+          .replaceAll(new RegExp("[__]+"), "_");
 
       print(title);
 
@@ -110,7 +112,10 @@ class _MyAppState extends State<MyApp> {
       print(param);
       var res = await getTitle(param);
       var title = jsonDecode(res.body)['items'][0]['snippet']['title'];
-      title = title.replaceAll("[^A-Za-z0-9]", '_');
+      title = title
+          .replaceAll(new RegExp(r"[^A-Za-z0-9]"), '_')
+          .replaceAll(new RegExp("[__]+"), "_");
+      ;
 
       print(title);
 
