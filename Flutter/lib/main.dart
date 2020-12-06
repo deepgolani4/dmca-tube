@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<http.Response> getTitle(String id) {
     return http.get(
-        'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=$id&key=AIzaSyDV0ZM0HAC0loJ94-LmMgXiM_ob2fxQ5qk');
+        'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=$id&key=<KEY>');
   }
 
   @override
